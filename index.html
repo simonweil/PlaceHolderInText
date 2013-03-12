@@ -1,0 +1,55 @@
+<html>
+<head>
+	<script src="lib/jquery-1.9.1.js"></script>
+	<script src="lib/handlebars-1.0.0-rc.3.js"></script>
+    <script src="lib/ember-1.0.0-rc.1.js"></script>
+    <script src="js/pit.js"></script>
+    
+
+
+</head>
+<body>
+	<div id="pit">
+		<script type="text/x-handlebars">
+			Test <b>{{PHinText.name}}</b>
+		</script>
+
+		<!--<script type="text/x-handlebars">
+			<div>
+				{{outlet}}
+			</div>
+		</script>-->
+		
+		<script type="text/x-handlebars">
+			Test <b>{{PHinText.name}}</b><br>
+			<ul>
+			    {{#each PHinText.placeHoldersController.content}}
+			        <li>{{name}} - {{ph_text}} - <br>{{formated_text}}</li>
+			        {{#each values}}
+						<li>{{name}}: {{view PHinText.MyText valueBinding="value"}}</li>
+			        {{/each}}
+				{{else}}
+					<li><b>Error:</b> No values, must have at least a default text input.</li>
+			    {{/each}}
+			</ul>
+		</script>
+	</div>
+
+	<!--<div id="app">
+		<script type="text/x-handlebars">
+		  The President of the United States is {{MyApp.president.fullName}}.
+		</script>
+	</div>-->
+
+	<div>
+		<h2>Learn:</h2>
+		<ul>
+			<li><b>http://emberjs.com/guides/templates/actions/</b></li>
+			<li>http://jsfiddle.net/ebryn/cCRck/</li>
+			<li>http://www.adobe.com/devnet/html5/articles/flame-on-a-beginners-guide-to-emberjs.html</li>
+			<li>help 1: http://stackoverflow.com/questions/10895617/how-to-bind-event-to-dynamically-created-instance-in-ember-js</li>
+			<li>help 2: http://stackoverflow.com/questions/8682172/trigger-an-action-in-a-text-field-from-a-button</li>
+		</ul>
+	</div>
+</body>
+</html>
