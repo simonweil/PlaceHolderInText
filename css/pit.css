@@ -1,0 +1,33 @@
+.placeholder {
+	position: static;
+	display: inline-block;
+}
+.ph-body {
+    background: none repeat scroll 0 0 red;
+    border-radius: 0 70px 70px 0;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 3px 6px 2px 3px;
+    position: relative;
+    text-align: left;
+}
+.ph-rm {
+    background-color: blue;
+    border-radius: 70px 0 0 70px;
+    padding: 3px 4px 2px 5px;
+    position: relative;
+    display: inline-block;
+}
+ul.ph_input_element {
+    border: 1px solid gray;
+    display: inline-block;
+    list-style: none outside none;
+    padding: 1px;
+}
+ul.ph_input_element > li {
+    display: inline-block;
+}
+ul.ph_input_element > li > input {
+    border: 0 none;
+    font-size: 13px;
+}

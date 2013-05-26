@@ -1,55 +1,76 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<script src="lib/jquery-1.9.1.js"></script>
 	<script src="lib/handlebars-1.0.0-rc.3.js"></script>
-    <script src="lib/ember-1.0.0-rc.1.js"></script>
+    <script src="lib/ember-1.0.0-rc.3.js"></script>
+    <script src="js/autoGrowInput.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.pack.js"></script>
     <script src="js/pit.js"></script>
-    
-
-
+    <link rel="stylesheet" href="css/pit.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css">
 </head>
 <body>
-	<div id="pit">
-		<script type="text/x-handlebars">
-			Test <b>{{PHinText.name}}</b>
-		</script>
+	<script type="text/x-handlebars">
+		Test <b>{{PHinText.name}}</b>
+	</script>
 
-		<!--<script type="text/x-handlebars">
-			<div>
-				{{outlet}}
-			</div>
-		</script>-->
-		
-		<script type="text/x-handlebars">
-			Test <b>{{PHinText.name}}</b><br>
-			<ul>
-			    {{#each PHinText.placeHoldersController.content}}
-			        <li>{{name}} - {{ph_text}} - <br>{{formated_text}}</li>
-			        {{#each values}}
-						<li>{{name}}: {{view PHinText.MyText valueBinding="value"}}</li>
-			        {{/each}}
-				{{else}}
-					<li><b>Error:</b> No values, must have at least a default text input.</li>
-			    {{/each}}
-			</ul>
-		</script>
-	</div>
+	<script type="text/x-handlebars" id="phValues">
+		{{#each value in values}}
+	        {{value.name}}: {{input value=value.value}}<br/>
+	    {{else}}
+			<p>no values here...</p>
+	    {{/each}}
 
-	<!--<div id="app">
-		<script type="text/x-handlebars">
-		  The President of the United States is {{MyApp.president.fullName}}.
-		</script>
-	</div>-->
-
-	<div>
-		<h2>Learn:</h2>
-		<ul>
-			<li><b>http://emberjs.com/guides/templates/actions/</b></li>
-			<li>http://jsfiddle.net/ebryn/cCRck/</li>
-			<li>http://www.adobe.com/devnet/html5/articles/flame-on-a-beginners-guide-to-emberjs.html</li>
-			<li>help 1: http://stackoverflow.com/questions/10895617/how-to-bind-event-to-dynamically-created-instance-in-ember-js</li>
-			<li>help 2: http://stackoverflow.com/questions/8682172/trigger-an-action-in-a-text-field-from-a-button</li>
+	    {{#linkTo "index"}}Close{{/linkTo}}
+	</script>
+	
+	<script type="text/x-handlebars">
+		Test <b>{{PHinText.name}}</b><br>
+		<ul class="ph_input_element">
+		    {{#each PHinText.placeHoldersController.content}}
+		        {{#ifTextPH}}
+		        	{{#each values}}
+		    			<li>{{view PHinText.MyText valueBinding="value"}}</li>
+		    		{{/each}}
+		    	{{else}}
+		        	{{view PHinText.PlaceHolderViewContainer}}
+		    	{{/ifTextPH}}
+			{{else}}
+				<li><b>Error:</b> No values, must have at least a default text input.</li>
+		    {{/each}}
 		</ul>
-	</div>
+
+		<div id="ph-types-choose">
+			<ul>
+				{{#each PHinText.placeHolderTypesController.content}}						
+					{{#ifTextPH}}
+						<!-- Do nothing -->
+			    	{{else}}
+			        	{{#view PHinText.PlaceHolderTypeView}}
+							{{display_name}}
+						{{/view}}
+			    	{{/ifTextPH}}
+				{{/each}}
+			</ul>
+		</div>
+
+		URL: {{PHinText.placeHoldersController.getFullString}}
+
+		{{outlet}}
+
+		<div>
+			<h2>Learn:</h2>
+			<ul>
+				<li><b>lightbox: http://stackoverflow.com/questions/14266771/writing-a-lightboxview-causes-problems-integrating-dom-manipulating-jquery-plu</b></li>
+				<li><b>Do Transition: http://stackoverflow.com/questions/11552417/emberjs-how-to-transition-to-a-router-from-a-controllers-action</b></li>
+				<li><b>transition docs: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo</b></li>
+				<li>http://jsfiddle.net/ebryn/cCRck/</li>
+				<li>http://www.adobe.com/devnet/html5/articles/flame-on-a-beginners-guide-to-emberjs.html</li>
+				<li>help 1: http://stackoverflow.com/questions/10895617/how-to-bind-event-to-dynamically-created-instance-in-ember-js</li>
+				<li>help 2: http://stackoverflow.com/questions/8682172/trigger-an-action-in-a-text-field-from-a-button</li>
+			</ul>
+		</div>
+	</script>
 </body>
 </html>
